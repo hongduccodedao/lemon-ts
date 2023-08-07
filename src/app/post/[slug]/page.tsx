@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { apiGetPostBySlug } from "@/app/post";
 
 interface Props {
   params: {
@@ -11,6 +11,7 @@ interface Props {
 interface Post {
   title: string;
   content: string;
+  slug: string;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -37,7 +38,7 @@ export async function generateStaticParams() {
   );
 
   if (response.data.err === 0) {
-    return response.data.data.map((post) => ({
+    return response.data.data.map((post: any) => ({
       params: {
         slug: post.slug,
       },
@@ -48,22 +49,7 @@ export async function generateStaticParams() {
 }
 
 const BlogPostPage = async ({ params }: Props) => {
-  const [post, setPost] = useState<Post | null>(null);
-
-  const getPost = async () => {
-    const response = await axios.get(
-      `https://lemon-code-page.onrender.com/api/post/${params.slug}`,
-    );
-    if (response.data.err === 0) {
-      setPost(response.data.data);
-    } else {
-      setPost(null);
-    }
-  };
-
-  useEffect(() => {
-    getPost();
-  }, []);
+  const post = await apiGetPostBySlug(params.slug);
 
   return (
     <div>
