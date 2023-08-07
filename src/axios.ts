@@ -1,21 +1,30 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 
-const instance = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL });
+// Create an Axios instance
+const instance: AxiosInstance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+});
 
 instance.interceptors.request.use(
-  function (config: AxiosRequestConfig): AxiosRequestConfig {
+  (config: InternalAxiosRequestConfig) => {
     return config;
   },
-  function (error: AxiosError): Promise<AxiosError> {
+  (error) => {
     return Promise.reject(error);
   },
 );
 
+// Response interceptor
 instance.interceptors.response.use(
-  function (response: AxiosResponse): AxiosResponse {
+  (response: AxiosResponse) => {
+    // You can modify the response data here
     return response;
   },
-  function (error: AxiosError): Promise<AxiosError> {
+  (error) => {
     return Promise.reject(error);
   },
 );
