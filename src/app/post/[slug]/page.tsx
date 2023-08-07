@@ -1,69 +1,70 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { Metadata } from "next";
 import axios from "axios";
+import { useEffect, useState } from "react";
+
+interface Props {
+  params: {
+    slug: string;
+  };
+}
 
 interface Post {
   title: string;
   content: string;
 }
 
-interface Props {
-  post: Post | null;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const response = await axios.get(
+    `https://lemon-code-page.onrender.com/api/post/${params.slug}`,
+  );
+
+  if (response.data.err === 0) {
+    return {
+      title: response.data.data.title,
+      description: response.data.data.content,
+    };
+  } else {
+    return {
+      title: "Post not found",
+      description: "Post not found",
+    };
+  }
 }
 
-interface PathParams {
-  slug: string;
-}
-
-export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
+export async function generateStaticParams() {
   const response = await axios.get(
     `https://lemon-code-page.onrender.com/api/post/getAll`,
   );
 
   if (response.data.err === 0) {
-    const paths = response.data.data.map((post: any) => ({
+    return response.data.data.map((post) => ({
       params: {
         slug: post.slug,
       },
     }));
-    return {
-      paths,
-      fallback: false,
-    };
   } else {
-    return {
-      paths: [],
-      fallback: false,
-    };
+    return [];
   }
-};
+}
 
-export const getStaticProps: GetStaticProps<Props, PathParams> = async ({
-  params,
-}) => {
-  const response = await axios.get(
-    `https://lemon-code-page.onrender.com/api/post/${params?.slug}`,
-  );
+const BlogPostPage = async ({ params }: Props) => {
+  const [post, setPost] = useState<Post | null>(null);
 
-  if (response.data.err === 0) {
-    const post: Post = {
-      title: response.data.data.title,
-      content: response.data.data.content,
-    };
-    return {
-      props: {
-        post,
-      },
-    };
-  } else {
-    return {
-      props: {
-        post: null,
-      },
-    };
-  }
-};
+  const getPost = async () => {
+    const response = await axios.get(
+      `https://lemon-code-page.onrender.com/api/post/${params.slug}`,
+    );
+    if (response.data.err === 0) {
+      setPost(response.data.data);
+    } else {
+      setPost(null);
+    }
+  };
 
-const BlogPostPage: React.FC<Props> = ({ post }) => {
+  useEffect(() => {
+    getPost();
+  }, []);
+
   return (
     <div>
       {post ? (
