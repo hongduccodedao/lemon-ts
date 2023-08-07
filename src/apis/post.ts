@@ -18,5 +18,9 @@ export const apiGetPostBySlug = async (slug: string) => {
     url: `/post/${slug}`,
   });
 
-  return response.data;
+  if (response.data.err === 0) {
+    return response.data.data;
+  } else {
+    return response.data.message;
+  }
 };

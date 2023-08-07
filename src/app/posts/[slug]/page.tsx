@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-import axios from "axios";
-import { apiGetPostBySlug } from "@/apis";
+import * as apis from "@/apis";
 
 interface Props {
   params: {
@@ -12,17 +11,16 @@ interface Post {
   title: string;
   content: string;
   slug: string;
+  image: string;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const response = await axios.get(
-    `https://lemon-code-page.onrender.com/api/post/${params.slug}`,
-  );
+  const response = await apis.apiGetPostBySlug(params.slug);
 
-  if (response.data.err === 0) {
+  if (response) {
     return {
-      title: response.data.data.title,
-      description: response.data.data.content,
+      title: response.title,
+      description: response.content,
     };
   } else {
     return {
@@ -33,12 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const response = await axios.get(
-    `https://lemon-code-page.onrender.com/api/post/getAll`,
-  );
-
-  if (response.data.err === 0) {
-    return response.data.data.map((post: any) => ({
+  const response = await apis.apiGetPosts();
+  if (response && response.length > 0) {
+    return response.map((post: Post) => ({
       params: {
         slug: post.slug,
       },
@@ -49,8 +44,7 @@ export async function generateStaticParams() {
 }
 
 const BlogPostPage = async ({ params }: Props) => {
-  const response = await apiGetPostBySlug(params.slug);
-  const post = response.data;
+  const post = await apis.apiGetPostBySlug(params.slug);
   return (
     <div>
       {post ? (
