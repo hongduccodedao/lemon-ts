@@ -5,10 +5,10 @@ export const apiGetPosts = async () => {
     method: "GET",
     url: "/post/getAll",
   });
-  if (response.data.err === 0) {
-    return response.data.data;
+  if (response.data?.err === 0) {
+    return response.data?.data;
   } else {
-    return response.data.message;
+    return response.data?.message;
   }
 };
 
