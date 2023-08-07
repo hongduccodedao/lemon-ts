@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import axios from "axios";
-import { apiGetPostBySlug } from "@/app/post";
+import { apiGetPostBySlug } from "@/apis";
 
 interface Props {
   params: {
@@ -49,8 +49,8 @@ export async function generateStaticParams() {
 }
 
 const BlogPostPage = async ({ params }: Props) => {
-  const post = await apiGetPostBySlug(params.slug);
-
+  const response = await apiGetPostBySlug(params.slug);
+  const post = response.data;
   return (
     <div>
       {post ? (
