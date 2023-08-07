@@ -3,7 +3,7 @@ import axios from "@/axios";
 export const apiGetPosts = async () => {
   const response = await axios({
     method: "GET",
-    url: "/post/getAll",
+    url: `${process.env.NEXT_PUBLIC_API_URL}/post/getAll`,
   });
   if (response.data?.err === 0) {
     return response.data?.data;
@@ -15,7 +15,7 @@ export const apiGetPosts = async () => {
 export const apiGetPostBySlug = async (slug: string) => {
   const response = await axios({
     method: "GET",
-    url: `/post/${slug}`,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/post/${slug}`,
   });
 
   if (response.data.err === 0) {
