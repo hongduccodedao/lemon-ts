@@ -21,12 +21,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "vi_VN",
-    url: "https://lemon-ts.vercel.app/",
+    url: "https://lemon-code-page.vercel.app/",
     title: "Lemon Code🍋",
     description: "This is the description of Lemon Code🍋",
     images: [
       {
-        url: "https://lemon-ts.vercel.app/og-image.jpg",
+        url: "https://lemon-code-page.vercel.app/",
       },
     ],
   },
