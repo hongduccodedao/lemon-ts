@@ -35,6 +35,7 @@ const Navbar = () => {
             <input
               type="text"
               className="bg-transparent p-2 outline-none flex-1"
+              placeholder="Search..."
             />
             <button className="py-2 px-3 hover:bg-ctp-green h-full rounded-r-md hover:text-ctp-base text-xl">
               <RiSearch2Line />
