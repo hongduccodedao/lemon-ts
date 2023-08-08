@@ -1,12 +1,28 @@
-import React from "react";
+"use client";
+import { useEffect } from "react";
 import Link from "next/link";
 import { paths } from "@/utils/paths";
 import icons from "@/utils/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrent } from "@/store/user/asyncActions";
+import Image from "next/image";
+import { handleLogoutRedux } from "@/store/user/userSlice";
 
-const { RiSearch2Line } = icons;
+const { RiSearch2Line, RiLogoutCircleRLine } = icons;
 
 const Navbar = () => {
-  // const { isLogged } = useSelector((state: any) => state.user);
+  const dispatch = useDispatch();
+  const { isLogged, current } = useSelector((state: any) => state.user);
+  useEffect(() => {
+    const setTimeoutId = setTimeout(() => {
+      if (isLogged) {
+        // @ts-ignore
+        dispatch(getCurrent());
+      }
+    }, 300);
+
+    return () => clearTimeout(setTimeoutId);
+  }, [dispatch, isLogged]);
 
   return (
     <div className="border-b border-ctp-overlay0 w-full bg-ctp-base">
@@ -25,16 +41,45 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className="flex items-center gap-5">
-          <Link href={paths.LOGIN} title="Login">
-            <span className="hover:text-ctp-green hover:underline">Login</span>
-          </Link>
-          <Link href={paths.REGISTER} title="Register">
-            <span className="text-ctp-green border border-ctp-green px-4 py-3 h-11 rounded-md hover:bg-ctp-green hover:text-ctp-base">
-              Register
+        {isLogged ? (
+          <div className="flex items-center gap-5">
+            <Link href={paths.CREATE}>
+              <span className="text-ctp-green border border-ctp-green px-4 py-3 h-11 rounded-md hover:bg-ctp-green hover:text-ctp-base">
+                Create Post
+              </span>
+            </Link>
+            <Link
+              href={`/${current?._id}`}
+              title={`${current?.firstName} ${current?.lastName}`}
+            >
+              <div className="relative w-10 h-10">
+                <Image
+                  src={current?.avatar}
+                  alt="avatar"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-full cursor-pointer hover:opacity-80 duration-300 transition-all ease-in-out object-center object-cover"
+                />
+              </div>
+            </Link>
+            <span onClick={() => dispatch(handleLogoutRedux())}>
+              <RiLogoutCircleRLine className="cursor-pointer hover:text-ctp-red text-2xl duration-300 transition-all ease-in-out" />
             </span>
-          </Link>
-        </div>
+          </div>
+        ) : (
+          <div className="flex items-center gap-5">
+            <Link href={paths.LOGIN} title="Login">
+              <span className="hover:text-ctp-green hover:underline">
+                Login
+              </span>
+            </Link>
+            <Link href={paths.REGISTER} title="Register">
+              <span className="text-ctp-green border border-ctp-green px-4 py-3 h-11 rounded-md hover:bg-ctp-green hover:text-ctp-base">
+                Register
+              </span>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

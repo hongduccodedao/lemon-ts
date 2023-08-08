@@ -18,10 +18,8 @@ instance.interceptors.request.use(
   },
 );
 
-// Response interceptor
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    // You can modify the response data here
     return response;
   },
   (error) => {
