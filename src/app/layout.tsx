@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Inconsolata } from "next/font/google";
 import { ReduxProvider } from "@/store/provider";
 import { Navbar } from "@/components/layouts";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inconsolata = Inconsolata({ subsets: ["latin"] });
 
@@ -43,6 +45,7 @@ export default function RootLayout({
             <Navbar />
             {children}
           </div>
+          <ToastContainer theme="dark" />
         </ReduxProvider>
       </body>
     </html>
