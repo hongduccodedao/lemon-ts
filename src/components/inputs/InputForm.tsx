@@ -18,7 +18,7 @@ const InputForm = ({
   required = false,
 }: Props) => {
   return (
-    <div>
+    <div className="flex-1">
       <label htmlFor={id} className="text-ctp-subtext1 text-sm mb-4">
         {placeholder} <span className="text-ctp-red">*</span>
       </label>

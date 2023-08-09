@@ -52,3 +52,23 @@ export const apiLogin = async (email: string, password: string) => {
 
   return response.data;
 };
+
+export const apiRegister = async (
+  email: string,
+  password: string,
+  firstName: string,
+  lastName: string,
+) => {
+  const response = await axios({
+    method: "POST",
+    url: "/auth/register",
+    data: {
+      email,
+      password,
+      firstName,
+      lastName,
+    },
+  });
+
+  return response.data;
+};
