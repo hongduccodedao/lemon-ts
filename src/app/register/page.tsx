@@ -57,7 +57,7 @@ const Page = () => {
       setLastName("");
       setConfirmPassword("");
 
-      window.location.href = paths.LOGIN;
+      // window.location.href = paths.LOGIN;
     } else {
       toast.error(response.message);
     }
