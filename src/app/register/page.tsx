@@ -50,6 +50,14 @@ const Page = () => {
     );
     if (response.err === 0) {
       toast.success(response.message);
+      //   reset form
+      setEmail("");
+      setPassword("");
+      setFirstName("");
+      setLastName("");
+      setConfirmPassword("");
+
+      window.location.href = paths.LOGIN;
     } else {
       toast.error(response.message);
     }
