@@ -4,6 +4,7 @@ interface IPaths {
   REGISTER: string;
   FORGOT_PASSWORD: string;
   CREATE: string;
+  SETTING: string;
 }
 
 export const paths: IPaths = {
@@ -12,4 +13,5 @@ export const paths: IPaths = {
   REGISTER: "/register",
   FORGOT_PASSWORD: "/forgot-password",
   CREATE: "/create",
+  SETTING: "/setting",
 };
