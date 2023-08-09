@@ -24,3 +24,16 @@ export const apiGetPostBySlug = async (slug: string) => {
     return response.data.message;
   }
 };
+
+export const apiGetPostByUserId = async (uid : string) => {
+  const response = await axios({
+    method: "GET",
+    url: `/post/getPostsUser/${uid}`,
+  });
+
+  if (response.data.err === 0) {
+    return response.data.data;
+  } else {
+    return response.data.message;
+  }
+};

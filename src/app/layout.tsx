@@ -18,18 +18,6 @@ export const metadata: Metadata = {
   verification: {
     google: "google-site-verification=878787878",
   },
-  openGraph: {
-    type: "website",
-    locale: "vi_VN",
-    url: "https://lemon-ts.vercel.app/",
-    title: "Lemon Code🍋",
-    description: "This is the description of Lemon Code🍋",
-    images: [
-      {
-        url: "https://lemon-ts.vercel.app/og-image.jpg",
-      },
-    ],
-  },
 };
 
 export default function RootLayout({

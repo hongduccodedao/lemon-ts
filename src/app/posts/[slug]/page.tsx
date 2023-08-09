@@ -28,7 +28,6 @@ interface Post {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const response = await apis.apiGetPostBySlug(params.slug);
-
   if (response) {
     return {
       title: response.title,
