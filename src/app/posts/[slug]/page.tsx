@@ -3,6 +3,7 @@ import * as apis from "@/apis";
 import icons from "@/utils/icons";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import { ShowMore } from "@/components/posts";
 
 const {
   RiBookmarkLine,
@@ -73,9 +74,7 @@ const BlogPostPage = async ({ params }: Props) => {
               <div className="flex flex-col gap-2 items-center cursor-pointer">
                 <RiBookmarkLine className="text-2xl" />
               </div>
-              <div className="flex flex-col gap-2 items-center cursor-pointer relative">
-                <RiMoreFill className="text-2xl" />
-              </div>
+              <ShowMore />
             </div>
             <div className="bg-ctp-surface0 rounded-lg flex-6 w-full ">
               {post?.image && (
