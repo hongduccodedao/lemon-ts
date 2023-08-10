@@ -1,20 +1,5 @@
 import axios from "@/axios";
-
-// get token from localStorage
-export const getToken = (): string | null => {
-  const localStorageData = window.localStorage.getItem("persist:lemon/user");
-
-  if (localStorageData) {
-    const parsedData = JSON.parse(localStorageData);
-
-    if (typeof parsedData === "object" && "token" in parsedData) {
-      const accessToken = parsedData.token;
-      return accessToken.replace(/"/g, "");
-    }
-  }
-
-  return null;
-};
+import { getToken } from "@/utils/functions";
 
 export const apiGetCurrentUser = async () => {
   const response = await axios({
@@ -77,6 +62,22 @@ export const apiVerifyCaptCha = async (captcha: string) => {
   const response = await axios({
     method: "POST",
     url: `/handleCaptcha/${captcha}`,
+  });
+
+  return response.data;
+};
+
+export const apiUpdateUser = async (firstName: string, lastName: string) => {
+  const response = await axios({
+    method: "PUT",
+    url: "/user",
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+    data: {
+      firstName,
+      lastName,
+    },
   });
 
   return response.data;
