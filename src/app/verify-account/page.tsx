@@ -15,7 +15,7 @@ const Page = () => {
     }
 
     const response = await apis.apiVerifyCaptCha(captcha);
-
+    console.log(response);
     if (response.err === 0) {
       toast.success("Verify account success!");
     } else {
@@ -36,7 +36,10 @@ const Page = () => {
           }
           placeholder="Enter your captcha"
         />
-        <button className="flex items-center justify-center w-full bg-ctp-green text-ctp-base py-2 text-lg rounded-md">
+        <button
+          className="flex items-center justify-center w-full bg-ctp-green text-ctp-base py-2 text-lg rounded-md"
+          onClick={() => handleVerify()}
+        >
           Verify account
         </button>
         <div className="text-center">
