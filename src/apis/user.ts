@@ -60,7 +60,7 @@ export const apiRegister = async (
 
 export const apiVerifyCaptCha = async (captcha: string) => {
   const response = await axios({
-    method: "POST",
+    method: "GET",
     url: `/handleCaptcha/${captcha}`,
   });
 
