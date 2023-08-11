@@ -15,9 +15,9 @@ const Page = () => {
     }
 
     const response = await apis.apiVerifyCaptCha(captcha);
-    console.log(response);
     if (response.err === 0) {
       toast.success("Verify account success!");
+      window.location.href = paths.LOGIN;
     } else {
       return toast.error(response.message);
     }
