@@ -2,8 +2,7 @@ import { Metadata } from "next";
 import * as apis from "@/apis";
 import icons from "@/utils/icons";
 import Image from "next/image";
-import ReactMarkdown from "react-markdown";
-import { ShowMore } from "@/components/posts";
+import { DisplayMarkdown, ShowMore } from "@/components/posts";
 
 const {
   RiBookmarkLine,
@@ -100,10 +99,8 @@ const BlogPostPage = async ({ params }: Props) => {
                     </span>
                   ))}
                 </div>
-                <div className="">
-                  {post?.content && (
-                    <ReactMarkdown>{post?.content}</ReactMarkdown>
-                  )}
+                <div className="max-w-[740px]">
+                  {post?.content && <DisplayMarkdown content={post?.content} />}
                 </div>
               </div>
             </div>
