@@ -22,6 +22,7 @@ const Editor: React.FC<EditorProps> = ({ content, setContent }) => {
 
   return (
     <div data-color-mode="dark">
+      <div className="wmde-markdown-var"></div>
       <MDEditor value={content} onChange={handleChange} />
     </div>
   );

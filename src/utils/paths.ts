@@ -6,6 +6,12 @@ interface IPaths {
   CREATE: string;
   SETTING: string;
   VERiFY_ACCOUNT: string;
+  DASHBOARD: string;
+}
+
+interface IItemMenu {
+  name: string;
+  path: string;
 }
 
 export const paths: IPaths = {
@@ -16,4 +22,20 @@ export const paths: IPaths = {
   CREATE: "/create",
   SETTING: "/setting",
   VERiFY_ACCOUNT: "/verify-account",
+  DASHBOARD: "/dashboard",
 };
+
+export const itemMenu: IItemMenu[] = [
+  {
+    name: "Create Post",
+    path: paths.CREATE,
+  },
+  {
+    name: "Setting",
+    path: paths.SETTING,
+  },
+  {
+    name: "Dashboard",
+    path: paths.DASHBOARD,
+  },
+];

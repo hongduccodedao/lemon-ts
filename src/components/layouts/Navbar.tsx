@@ -1,7 +1,7 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { paths } from "@/utils/paths";
+import { itemMenu, paths } from "@/utils/paths";
 import icons from "@/utils/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrent } from "@/store/user/asyncActions";
@@ -13,6 +13,7 @@ const { RiSearch2Line, RiLogoutCircleRLine } = icons;
 const Navbar = () => {
   const dispatch = useDispatch();
   const { isLogged, current } = useSelector((state: any) => state.user);
+  const [isShowMenu, setIsShowMenu] = useState<boolean>(false);
   useEffect(() => {
     const setTimeoutId = setTimeout(() => {
       if (isLogged) {
@@ -49,11 +50,11 @@ const Navbar = () => {
                 Create Post
               </span>
             </Link>
-            <Link
-              href={`/${current?._id}`}
-              title={`${current?.firstName} ${current?.lastName}`}
-            >
-              <div className="relative w-10 h-10">
+            <div className="relative" onBlur={() => setIsShowMenu(false)}>
+              <div
+                className="relative w-10 h-10"
+                onClick={() => setIsShowMenu(!isShowMenu)}
+              >
                 <Image
                   src={current?.avatar}
                   alt="avatar"
@@ -62,10 +63,34 @@ const Navbar = () => {
                   className="rounded-full cursor-pointer hover:opacity-80 duration-300 transition-all ease-in-out object-center object-cover"
                 />
               </div>
-            </Link>
-            <span onClick={() => dispatch(handleLogoutRedux())}>
-              <RiLogoutCircleRLine className="cursor-pointer hover:text-ctp-red text-2xl duration-300 transition-all ease-in-out" />
-            </span>
+              {isShowMenu && (
+                <div className="absolute right-0 bg-ctp-base border border-ctp-overlay0 p-2 rounded-md z-10 whitespace-nowrap w-[250px]">
+                  <Link href={`/${current?._id}`}>
+                    <div className="hover:bg-ctp-green p-2 rounded-md hover:text-ctp-base cursor-pointer">
+                      {current?.firstName} {current?.lastName}
+                    </div>
+                  </Link>
+                  <div className="w-full h-[0.5px] bg-ctp-overlay0 bg-opacity-40 my-2"></div>
+                  {itemMenu.map((item, index) => (
+                    <Link href={item.path} key={index}>
+                      <div
+                        className="hover:bg-ctp-green p-2 rounded-md hover:text-ctp-base cursor-pointer"
+                        onClick={() => setIsShowMenu(false)}
+                      >
+                        {item.name}
+                      </div>
+                    </Link>
+                  ))}
+                  <div className="w-full h-[0.5px] bg-ctp-overlay0 bg-opacity-40 my-2"></div>
+                  <div
+                    className="hover:bg-ctp-red p-2 rounded-md hover:text-ctp-base cursor-pointer"
+                    onClick={() => dispatch(handleLogoutRedux())}
+                  >
+                    Logout
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           <div className="flex items-center gap-5">
