@@ -19,6 +19,7 @@ import {
   RiSearch2Line,
   RiSettingsLine,
   RiCloseLine,
+  RiMenu2Fill,
 } from "react-icons/ri";
 
 const icons = {
@@ -42,6 +43,7 @@ const icons = {
   RiMoreFill,
   RiHeartAddFill,
   RiCloseLine,
+  RiMenu2Fill,
 };
 
 export default icons;

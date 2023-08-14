@@ -50,8 +50,8 @@ const PostCard = ({ post }: Props) => {
             </span>
           </div>
         </div>
-        <div className="py-3 px-10">
-          <h2 className="text-4xl font-bold hover:text-ctp-green">
+        <div className="py-3 px-0 md:px-10">
+          <h2 className="text-2xl lg:text-4xl font-bold hover:text-ctp-green">
             {post.title}
           </h2>
           <div className="flex items-center gap-3 mt-2">
@@ -72,14 +72,16 @@ const PostCard = ({ post }: Props) => {
                 title={`${post.likes} likes`}
               >
                 <RiHeartAddLine className="text-xl text-ctp-red" />
-                <span className="">{post.likes} likes</span>
+                <span className="">{post.likes}</span>
+                <span className="hidden md:block">likes</span>
               </div>
               <div
                 className="flex items-center gap-2 bg-ctp-surface2 px-3 py-1 rounded-xl"
                 title={`${post.comments} comments`}
               >
                 <RiChat1Line className="text-xl text-ctp-blue" />
-                <span className="">{post.comments} comments</span>
+                <span className="">{post.comments}</span>
+                <span className="hidden md:block">comments</span>
               </div>
             </div>
             <button

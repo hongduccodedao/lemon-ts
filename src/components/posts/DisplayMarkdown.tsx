@@ -1,11 +1,8 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const EditerMarkdown = dynamic(
-  () =>
-    import("@uiw/react-md-editor").then((mod) => {
-      return mod.default.Markdown;
-    }),
+const Markdown = dynamic(
+  () => import("@uiw/react-markdown-preview").then((mod) => mod.default),
   { ssr: false },
 );
 
@@ -16,7 +13,8 @@ interface Props {
 const DisplayMarkdown = ({ content }: Props) => {
   return (
     <div data-color-mode="dark">
-      <EditerMarkdown source={content} className="" />
+      <div className="wmde-markdown-var"> </div>
+      <Markdown source={content} />
     </div>
   );
 };

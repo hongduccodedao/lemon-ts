@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-ctp-crust text-ctp-text;
+    }
+}
+
+/*custom color dark theme */
+
+.wmde-markdown[data-color-mode*='dark'] {
+    --color-canvas-default: #11111b !important;
+}
+
+.wmde-markdown {
+    background-color: #11111b !important;
+}
+
+[data-color-mode*='dark'] .wmde-markdown, [data-color-mode*='dark'] .wmde-markdown-var, .wmde-markdown-var[data-color-mode*='dark'], .wmde-markdown[data-color-mode*='dark'], body[data-color-mode*='dark'] {
+    --color-canvas-default: #11111b !important;
+}
