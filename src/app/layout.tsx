@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./globals.scss";
 import type { Metadata } from "next";
 import { Inconsolata } from "next/font/google";
 import { ReduxProvider } from "@/store/provider";

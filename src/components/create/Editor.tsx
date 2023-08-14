@@ -1,6 +1,7 @@
 import React from "react";
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
+import "@wcj/dark-mode";
 import dynamic from "next/dynamic";
 
 interface EditorProps {

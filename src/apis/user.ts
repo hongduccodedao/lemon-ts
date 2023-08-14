@@ -82,3 +82,10 @@ export const apiUpdateUser = async (firstName: string, lastName: string) => {
 
   return response.data;
 };
+
+export const apiForgotPassword = async () => {
+  const response = await axios({
+    method: "POST",
+    
+  })
+}
