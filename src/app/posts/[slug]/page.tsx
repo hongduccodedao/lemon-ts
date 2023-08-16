@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import * as apis from "@/apis";
 import icons from "@/utils/icons";
 import Image from "next/image";
-import { DisplayMarkdown, ShowMore } from "@/components/posts";
+import { DisplayMarkdown, LikeComment, ShowMore } from "@/components/posts";
 
 const {
   RiBookmarkLine,
@@ -61,20 +61,7 @@ const BlogPostPage = async ({ params }: Props) => {
       {post ? (
         <div>
           <div className="max-w-[1200px] w-full mx-auto mt-5 flex gap-5">
-            <div className="flex flex-col gap-7 mt-10">
-              <div className="flex flex-col gap-2 items-center cursor-pointer select-none">
-                <RiHeartAddLine className="text-2xl hover:text-ctp-red" />
-                <span className="text-ctp-subtext0">{post?.likes}</span>
-              </div>
-              <div className="flex flex-col gap-2 items-center cursor-pointer">
-                <RiChat1Line className="text-2xl" />
-                <span className="text-ctp-subtext0">{post?.comments}</span>
-              </div>
-              <div className="flex flex-col gap-2 items-center cursor-pointer">
-                <RiBookmarkLine className="text-2xl" />
-              </div>
-              <ShowMore />
-            </div>
+            <LikeComment likes={post?.likes} comments={post?.comments} />
             <div className="bg-ctp-surface0 rounded-lg flex-6 w-full ">
               {post?.image && (
                 <div className="relative w-full h-72">
