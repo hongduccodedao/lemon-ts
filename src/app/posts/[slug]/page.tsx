@@ -61,7 +61,7 @@ const BlogPostPage = async ({ params }: Props) => {
       {post ? (
         <div>
           <div className="max-w-[1200px] w-full mx-auto mt-5 flex gap-5">
-            <LikeComment likes={post?.likes} comments={post?.comments} />
+            <LikeComment pid={post._id} likes={post.likes} />
             <div className="bg-ctp-surface0 rounded-lg flex-6 w-full ">
               {post?.image && (
                 <div className="relative w-full h-72">

@@ -42,7 +42,7 @@ export const apiRegister = async (
   email: string,
   password: string,
   firstName: string,
-  lastName: string,
+  lastName: string
 ) => {
   const response = await axios({
     method: "POST",
@@ -81,4 +81,11 @@ export const apiUpdateUser = async (firstName: string, lastName: string) => {
   });
 
   return response.data;
+};
+
+export const apiGetLikedPosts = async (uid: string): Promise<string[]> => {
+  const response = await apiGetUserById(uid);
+  const likedPosts: any[] = response.likedPosts; // You should replace 'any' with the actual type of likedPosts
+  const posts: string[] = likedPosts.map((post: any) => post._id);
+  return posts;
 };
