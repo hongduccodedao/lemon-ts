@@ -28,13 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inconsolata.className}>
-        <ReduxProvider>
-          <div>
-            <Navbar />
-            {children}
-          </div>
-          <ToastContainer theme="dark" />
-        </ReduxProvider>
+          <ReduxProvider>
+            <div>
+              <Navbar />
+              {children}
+            </div>
+            <ToastContainer theme="dark" />
+          </ReduxProvider>
       </body>
     </html>
   );

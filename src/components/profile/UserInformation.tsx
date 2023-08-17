@@ -28,6 +28,7 @@ const UserInformation = () => {
 
   const getUser = async () => {
     const response = await apis.apiGetUserById(pathname as string);
+    console.log("🚀 ~ getUser ~ response:", response)
     setUser(response);
   };
 
