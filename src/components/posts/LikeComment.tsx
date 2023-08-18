@@ -26,10 +26,18 @@ const LikeComment = ({ pid, likes }: Props) => {
 
   const handleLike = async () => {
     try {
-      const response = await apis.apiLikePost(pid, 1, uid);
-      if (response) {
-        setIsLiked(true);
-        setTotalLikes(totalLikes + 1);
+      if(!isLiked) {
+        const response = await apis.apiLikePost(pid, 1, uid);
+        if (response) {
+          setIsLiked(true);
+          setTotalLikes(totalLikes + 1);
+        }
+      } else {
+        const response = await apis.apiLikePost(pid, -1, uid);
+        if (response) {
+          setIsLiked(false);
+          setTotalLikes(totalLikes - 1);
+        }
       }
     } catch (error) {
       console.log("🚀 ~ handleLike ~ error:", error);
