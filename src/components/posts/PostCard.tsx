@@ -4,7 +4,7 @@ import Link from "next/link";
 import moment from "moment";
 import { IPost } from "@/interface/post";
 
-const { RiBookmarkLine, RiHeartAddLine, RiChat1Line } = icons;
+const { RiBookmarkFill, RiHeartAddLine, RiChat1Line } = icons;
 
 interface Props {
   post: IPost;
@@ -83,10 +83,10 @@ const PostCard = ({ post }: Props) => {
               </div>
             </div>
             <button
-              className="text-xl text-gray-400 hover:text-gray-900"
+              className="text-xl text-ctp-text hover:text-ctp-mauve"
               title={`Save ${post.title}`}
             >
-              <RiBookmarkLine />
+              <RiBookmarkFill />
             </button>
           </div>
         </div>

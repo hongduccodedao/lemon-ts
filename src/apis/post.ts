@@ -62,3 +62,22 @@ export const apiLikePost = async (
     return response.data.message;
   }
 };
+
+export const apiSavePost = async (pid: string, save: boolean) => {
+  const response = await axios({
+    method: "POST",
+    url: `/user/savedPosts/${pid}`,
+    data: {
+      save: save,
+    },
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+
+  if (response.data.err === 0) {
+    return response.data;
+  } else {
+    return response.data.message;
+  }
+};
