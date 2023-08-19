@@ -2,8 +2,10 @@ import {
   RiAccountCircleFill,
   RiArrowDropLeftLine,
   RiBookmarkLine,
+  RiBookmarkFill,
   RiCake2Line,
   RiChat1Line,
+  RiChat1Fill,
   RiEyeFill,
   RiEyeOffFill,
   RiFileList3Line,
@@ -30,6 +32,7 @@ const icons = {
   RiEyeFill,
   RiEyeOffFill,
   RiBookmarkLine,
+  RiBookmarkFill,
   RiHeartAddLine,
   RiChat1Line,
   RiAccountCircleFill,
@@ -42,6 +45,7 @@ const icons = {
   RiMoreFill,
   RiHeartAddFill,
   RiCloseLine,
+  RiChat1Fill,
 };
 
 export default icons;
