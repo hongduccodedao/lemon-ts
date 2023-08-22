@@ -30,7 +30,7 @@ const MenuShare = () => {
   };
 
   return (
-    <div className="absolute top-0 w-[250px] bg-ctp-surface1 left-10 z-10 p-3 rounded-lg flex flex-col">
+    <div className="absolute top-0 w-[250px] bg-ctp-surface1 left-10 z-10 rounded-lg flex flex-col">
       <span
         className="p-2 hover:bg-ctp-green rounded-md hover:text-ctp-base"
         onClick={() => copyLink()}
