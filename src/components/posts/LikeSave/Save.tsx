@@ -1,5 +1,7 @@
 import icons from "@/utils/icons";
 import * as apis from "@/apis";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const {
   RiBookmarkLine,
@@ -13,9 +15,10 @@ interface Props {
 }
 
 const Save = ({isSaved, setIsSaved, pid}: Props) => {
-
+  const { isLogged } = useSelector((state: any) => state.user);
 
   const handleSave = async () => {
+    if (!isLogged) return toast.error("You must login to save this post");
     try {
       if (!isSaved) {
         const response = await apis.apiSavePost(pid, true);

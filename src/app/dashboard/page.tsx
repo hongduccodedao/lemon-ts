@@ -5,6 +5,8 @@ import * as apis from "@/apis";
 import { useSelector } from "react-redux";
 import { PostCard } from "@/components/posts";
 import { IPost } from "@/interface/post";
+import Link from "next/link";
+import { paths } from "@/utils/paths";
 
 interface MenuItem {
   id: number;
@@ -26,7 +28,7 @@ const Dashboard: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<number>(0);
   const [postsId, setPostIds] = useState<string[]>([]);
   const [posts, setPosts] = useState<IPost[]>([]);
-  const { current } = useSelector((state: any) => state.user);
+  const { current, isLogged } = useSelector((state: any) => state.user);
 
   const getPosts = async () => {
     let response: string[] = [];
@@ -59,30 +61,44 @@ const Dashboard: React.FC = () => {
     }
   }, [postsId]);
 
-
   return (
-    <div className="max-w-[1200px] w-full mx-auto my-10 flex gap-10">
-      <div className="basis-1/4">
-        {menu.map((item) => (
-          <div
-            key={item.id}
-            className={`
+    <>
+      {isLogged ? (
+        <div className="max-w-[1200px] w-full mx-auto my-10 flex gap-10">
+          <div className="basis-1/4">
+            {menu.map((item) => (
+              <div
+                key={item.id}
+                className={`
               ${
                 activeMenu === item.id ? "bg-ctp-green text-ctp-base" : ""
               } border-b border-ctp-overlay0 p-3 hover:bg-ctp-green hover:text-ctp-base transition-all ease-in-out duration-300 cursor-pointer rounded-md
             `}
-            onClick={() => setActiveMenu(item.id)}
-          >
-            <div>{item.name}</div>
+                onClick={() => setActiveMenu(item.id)}
+              >
+                <div>{item.name}</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <div className="w-full flex-1">
-        {posts.map((post) => (
-          <PostCard key={post._id} post={post} />
-        ))}
-      </div>
-    </div>
+          <div className="w-full flex-1">
+            {posts.map((post) => (
+              <PostCard key={post._id} post={post} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="max-w-[700px] mx-auto bg-ctp-surface0 p-5 rounded-lg my-20">
+          <h3 className="text-center font-bold text-3xl">
+            You need to login to create a post
+          </h3>
+          <div className="text-center">
+            <Link href={paths.LOGIN} className="text-ctp-green hover:underline">
+              Go to Login
+            </Link>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

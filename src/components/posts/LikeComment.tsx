@@ -24,7 +24,6 @@ const LikeComment = ({ pid, likes }: Props) => {
     const checkLiked = async () => {
       try {
         const response = await apis.apiGetLikedPosts(current._id);
-        console.log("🚀 ~ checkLiked ~ response:", response);
         if (response) {
           if (response.includes(pid)) {
             setIsLiked(true);
@@ -37,7 +36,6 @@ const LikeComment = ({ pid, likes }: Props) => {
     const checkSaved = async () => {
       try {
         const response = await apis.apiGetSavedPosts(current._id);
-        console.log("🚀 ~ checkSaved ~ response:", response);
         if (response) {
           if (response.includes(pid)) {
             setIsSaved(true);
@@ -49,7 +47,7 @@ const LikeComment = ({ pid, likes }: Props) => {
     };
     checkLiked();
     checkSaved();
-  }, []);
+  }, [current._id, pid]);
 
   return (
     <div className="flex flex-col gap-7 mt-10">

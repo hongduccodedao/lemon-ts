@@ -1,5 +1,8 @@
+"use client";
 import icons from "@/utils/icons";
 import * as apis from "@/apis";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const { RiHeartAddLine, RiHeartAddFill } = icons;
 
@@ -20,7 +23,9 @@ const Like = ({
   uid,
   pid,
 }: Props) => {
+  const { isLogged } = useSelector((state: any) => state.user);
   const handleLike = async () => {
+    if (!isLogged) return toast.error("You must login to like this post");
     try {
       if (!isLiked) {
         const response = await apis.apiLikePost(pid, 1, uid);
