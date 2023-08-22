@@ -16,7 +16,20 @@ export const apiGetPosts = async () => {
 export const apiGetPostBySlug = async (slug: string) => {
   const response = await axios({
     method: "GET",
-    url: `/post/${slug}`,
+    url: `/post/?slug=${slug}`,
+  });
+
+  if (response.data.err === 0) {
+    return response.data.data;
+  } else {
+    return response.data.message;
+  }
+};
+
+export const apiGetPostById = async (id: string) => {
+  const response = await axios({
+    method: "GET",
+    url: `/post/?id=${id}`,
   });
 
   if (response.data.err === 0) {

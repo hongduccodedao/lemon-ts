@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { itemMenu, paths } from "@/utils/paths";
 import icons from "@/utils/icons";
@@ -24,6 +24,24 @@ const Navbar = () => {
 
     return () => clearTimeout(setTimeoutId);
   }, [dispatch, isLogged]);
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsShowMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="border-b border-ctp-overlay0 w-full bg-ctp-base">
@@ -50,7 +68,7 @@ const Navbar = () => {
                 Create Post
               </span>
             </Link>
-            <div className="relative" onBlur={() => setIsShowMenu(false)}>
+            <div className="relative" ref={dropdownRef}>
               <div
                 className="relative w-10 h-10"
                 onClick={() => setIsShowMenu(!isShowMenu)}
