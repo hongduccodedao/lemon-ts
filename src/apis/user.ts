@@ -96,3 +96,15 @@ export const apiGetSavedPosts = async (uid: string): Promise<string[]> => {
   const posts: string[] = savedPosts.map((post: any) => post._id);
   return posts;
 };
+
+export const apiForgotPassword = async (email: string) => {
+  const response = await axios({
+    method: "POST",
+    url: "/auth/forgotPassword",
+    data: {
+      email,
+    },
+  });
+
+  return response.data;
+};
