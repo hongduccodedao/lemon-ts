@@ -5,7 +5,9 @@ interface IPaths {
   FORGOT_PASSWORD: string;
   CREATE: string;
   SETTING: string;
-  VERiFY_ACCOUNT: string;
+  VERIFY_ACCOUNT: string;
+  VERIFY_FORGOT_PASSWORD: string;
+  CHANGE_PASSWORD: string;
   DASHBOARD: string;
 }
 
@@ -21,7 +23,9 @@ export const paths: IPaths = {
   FORGOT_PASSWORD: "/forgot-password",
   CREATE: "/create",
   SETTING: "/setting",
-  VERiFY_ACCOUNT: "/verify-account",
+  VERIFY_ACCOUNT: "/verify-account",
+  VERIFY_FORGOT_PASSWORD: "/verify-forgot-password",
+  CHANGE_PASSWORD: "/change-password",
   DASHBOARD: "/dashboard",
 };
 
