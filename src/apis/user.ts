@@ -108,3 +108,12 @@ export const apiForgotPassword = async (email: string) => {
 
   return response.data;
 };
+
+export const apiVerifyForgotPassword = async (captcha: string) => {
+  const response = await axios({
+    method: "GET",
+    url: `/auth/forgotPasswordCaptcha/${captcha}`,
+  });
+
+  return response.data;
+}
