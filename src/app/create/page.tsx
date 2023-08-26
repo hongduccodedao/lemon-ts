@@ -85,7 +85,7 @@ const Page = () => {
   return (
     <>
       {isLogged ? (
-        <div className="max-w-[1200px] mx-auto bg-ctp-surface0 p-5 rounded-lg my-10">
+        <div className="container bg-ctp-surface0 p-5 rounded-lg my-10">
           <div className="flex items-center gap-10">
             {isImageUploaded && (
               <div className="relative max-w-[500px]">
