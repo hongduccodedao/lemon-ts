@@ -3,7 +3,7 @@ import { AvatarSetting, InfoSetting } from "@/components/setting";
 
 const Page = () => {
   return (
-    <div className="flex gap-10 max-w-[1200px] mx-auto py-10">
+    <div className="flex gap-10 container py-10">
       <AvatarSetting />
       <InfoSetting />
     </div>

@@ -3,7 +3,7 @@ import { Posts, Tags } from "@/components/home";
 export default function Home() {
   return (
     <main>
-      <div className="flex gap-10 max-w-[1200px] mx-auto my-10">
+      <div className="flex flex-col lg:flex-row gap-10 container my-10">
         <Tags />
         <Posts />
       </div>
