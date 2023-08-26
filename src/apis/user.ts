@@ -117,3 +117,15 @@ export const apiVerifyForgotPassword = async (captcha: string) => {
 
   return response.data;
 }
+
+export const apiChangePassword = async (password: string) => {
+  const response = await axios({
+    method: "POST",
+    url: "/auth/updatePassword",
+    data: {
+      password,
+    }
+  });
+
+  return response.data;
+}
